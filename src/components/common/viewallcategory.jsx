@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
-import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { Row,Col,Container } from "react-bootstrap";
+import { useSelector } from "react-redux";
+import {selectBreed} from '../../features/breed/breedSlice'
 
 function Viewallcategory() {
   const [categories, setCategory] = useState([]);
+  const allbreedData= useSelector(selectBreed);
   const fetchAllCategory = async () => {
     const category = await axios.get(
       "http://localhost:4000/category/view_all_category"
@@ -18,7 +20,7 @@ function Viewallcategory() {
   useEffect(() => {
     fetchAllCategory();
   }, []);
-
+  console.log("allbreedData in category",allbreedData);
   return (
    <Container fluid>
    <Row>
