@@ -4,16 +4,18 @@ import { Col, Container, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useParams } from "react-router";
+import Addreviews from "../user/addreviews";
 
 function Viewbreed() {
-  const [ breed, setBreed ] = useState([]);
-  const [ reviews, setReviews ] = useState([]);
+  const [showAddReview, setshowAddReview] = useState(false);
+  const [breed, setBreed] = useState([]);
+  const [reviews, setReviews] = useState([]);
   const params = useParams();
   const fetchAllBreed = async (breedId) => {
     const breedResponse = await axios.get(
       `http://localhost:4000/breed/view_breed/${breedId}`
     );
-    console.log("breed",breedResponse)
+    console.log("breed", breedResponse);
     if (breedResponse?.data) {
       setBreed(breedResponse.data.data);
     }
@@ -28,12 +30,17 @@ function Viewbreed() {
     }
   };
 
+  const updateShowReview = () => {
+    // setshowAddReview(true);
+    setshowAddReview((prev) => !prev);
+  };
+
   useEffect(() => {
-      const fetchAllData = async()=>{
-        await fetchAllBreed(params.breedId);
-        await fetchAllReviews(params.breedId);
-      }
-      fetchAllData();
+    const fetchAllData = async () => {
+      await fetchAllBreed(params.breedId);
+      await fetchAllReviews(params.breedId);
+    };
+    fetchAllData();
   }, []);
 
   return (
@@ -41,13 +48,25 @@ function Viewbreed() {
       <Row>
         <Col lg={2} md={4} sm={12}>
           <div className="d-flex justify-content-center">
-            <img className="img-fluid" src={breed.image} alt="pets-coverImage" />
+            <img
+              className="img-fluid"
+              src={breed.image}
+              alt="pets-coverImage"
+            />
           </div>
         </Col>
         <Col>
           <p>{breed.description}</p>
-          <Button variant="primary">Add Reviews</Button>
-
+          {!showAddReview ? (
+            <Button
+              variant="outline-primary"
+              size="md"
+              onClick={updateShowReview}
+            >
+              Add Reviews
+            </Button>
+          ) : null}
+          {showAddReview ? <Addreviews /> : null}
         </Col>
       </Row>
 
