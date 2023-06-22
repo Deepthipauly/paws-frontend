@@ -1,10 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Viewallcategory from "./viewallcategory";
-import { Col, Container, Row } from "react-bootstrap";
+import { Button, Col, Container, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { selectUser } from "../../features/auth/authSlice";
+import { useSelector } from "react-redux";
+
+
+
 
 function Homepage() {
+  const userData = useSelector(selectUser);
   return (
-    <Container fluid>
+    <Container fluid style={{fontFamily:'Crimson Text'}} >
       <Row>
         <Col>
           <div className="d-flex justify-content-center">
@@ -21,7 +28,7 @@ function Homepage() {
         <Col>
           <div className="d-flex justify-content-center">
             {" "}
-            <h1>Pets Galore</h1>
+            <h1 className="mt-5">Pets Galore</h1>
           </div>
           <p>
             A pet, or companion animal, is an animal kept primarily for a
@@ -48,13 +55,22 @@ function Homepage() {
               animals and handlers to achieve specific physical, social,
               cognitive, or emotional goals with patients.
             </p>
+            {userData.accountType === "ADMIN" ? (
+               <Link to={'/admin/add_category'} style={{textDecoration: "none"}}>
+                 <div className="d-flex justify-content-center" style={{textDecoration: "none"}} >
+                 <Button variant="outline-danger" style={{textDecoration: "none"}}>
+                  Add New Category
+                </Button>
+                 </div>
+               </Link>
+              ) : null}
           </Col>
         </Row>
       </Row>
       <Row>
         <Col>
         <div className="d-flex justify-content-center">
-            <h1>Pets Galore</h1>
+            <h1 className="mt-5 mb-3">Explore More.......</h1>
           </div>
            </Col>
       </Row>

@@ -6,6 +6,11 @@ import Viewallbreeds from "./components/common/viewallbreeds";
 import Viewbreed from "./components/common/viewbreed";
 import Register from "./components/user/register";
 import Login from "./components/user/login";
+import Addbreed from "./components/admin/addbreed";
+import Editbreed from "./components/admin/editbreed"
+import Deletebreed from "./components/admin/deletebreed";
+import Addcategory from "./components/admin/addcategory";
+
 
 
 const router = createBrowserRouter([
@@ -30,16 +35,41 @@ const router = createBrowserRouter([
  element: <><Header /><Login/></>
   },
 
-  
+  {
+    path:'/admin/add_breed',
+    element:<><Header /><Addbreed/></>
+  },
+
+  {
+    path:'/admin/edit_breed/:breedId',
+    element:<><Header /><Editbreed/></>
+  },
+
+{
+  path:'/admin/delete_breed/:breedId',
+  element:<><Header /><Deletebreed/></>
+},
+
+{
+  path:'/admin/add_category',
+  element:<><Header />< Addcategory/></>
+}
+
+
   
 ]);
 
 function App() {
+
+
+
   return (
-    <>
-     
-      <RouterProvider router={router} />
-    </>
+
+ 
+      <>
+        <RouterProvider router={router} />
+      </>
+   
   );
 }
 

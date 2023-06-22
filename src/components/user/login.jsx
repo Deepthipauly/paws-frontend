@@ -12,6 +12,7 @@ import InputGroup from "react-bootstrap/InputGroup";
 import { Link } from "react-router-dom";
 
 const Login = () => {
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const formik = useFormik({
@@ -19,6 +20,7 @@ const Login = () => {
       userName: "",
       password: "",
     },
+
 
     validationSchema: Yup.object({
       userName: Yup.string()
@@ -62,7 +64,7 @@ const Login = () => {
           " linear-gradient(rgba(16, 20, 24, 0.2), rgba(24, 84, 89, 0.2)), url(https://i.postimg.cc/3RZ7zPXZ/background.jpg)",
       }}
     >
-      <Container>
+      <Container style={{fontFamily:'Crimson Text'}} >
         <Row className="align-items-center" style={{ height: "100vh" }}>
           <Col className="mx-auto" sm={10} md={8} lg={6}>
             <div

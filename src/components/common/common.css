@@ -1,0 +1,9 @@
+#image-hover{
+    transition: .5s ease-in-out;
+    cursor: pointer;
+
+}
+
+#image-hover:hover{
+    transform: scale(1.05);
+}

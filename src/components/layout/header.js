@@ -32,7 +32,7 @@ function Header() {
   };
   return (
     <Navbar bg="dark" expand="lg">
-      <Container>
+      <Container style={{fontFamily:'Crimson Text'}} >
         <Link to={"/"} style={{ color: "white", textDecoration: "none" }}>
           <Navbar.Brand style={{ color: "white", textDecoration: "none" }}>
             PAWS
@@ -55,7 +55,7 @@ function Header() {
                   }}
                   style={{ color: "white", textDecoration: "none" }}
                 >
-                  LogOut
+                  Logout
                 </Navbar.Brand>
               </>
             ) : (
